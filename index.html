@@ -163,17 +163,8 @@
         
         /* Confetti */
         .confetti {
-            position: fixed; width: 10px; height: 10px; background: #d4af37; opacity: 0.7;
-            animation: confettiFall 5s linear infinite; z-index: 1000; pointer-events: none;
-        }
-        
-        /* Firecracker */
-        .firecracker {
-            position: fixed; width: 8px; height: 20px; background: linear-gradient(to bottom, #ff0000, #8b0000);
-            border-radius: 2px; z-index: 1000; pointer-events: none;
-        }
-        .firecracker-burst {
-            position: fixed; width: 6px; height: 6px; border-radius: 50%; z-index: 1000; pointer-events: none;
+            position: absolute; width: 10px; height: 10px; background: #d4af37; opacity: 0.7;
+            animation: confettiFall 5s linear infinite;
         }
         
         /* Animations */
@@ -201,22 +192,8 @@
            100% { box-shadow: 0 0 5px rgba(212, 175, 55, 0.3); }
         }
         @keyframes confettiFall {
-            0% { 
-                transform: translateY(-100px) rotate(0deg); 
-                opacity: 1;
-            }
-            100% { 
-                transform: translateY(100vh) rotate(360deg); 
-                opacity: 0;
-            }
-        }
-        @keyframes firecrackerRise {
-            0% { transform: translateY(0); opacity: 1; }
-            100% { transform: translateY(-100vh); opacity: 0; }
-        }
-        @keyframes firecrackerBurst {
-            0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(10); opacity: 0; }
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
         
         /* Cake Animation */
@@ -287,7 +264,6 @@
 
     <!-- Header Section -->
     <section class="header" id="header">
-        <!-- Confetti Container -->
         <div id="confetti-container" class="confetti-container"></div>
         
         <!-- Floating Elements -->
@@ -452,11 +428,12 @@
             
             setTimeout(typeWriter, 500);
             
-            // Create confetti throughout the entire page
+            // Create confetti
             function createConfetti() {
+                const confettiContainer = document.getElementById('confetti-container');
                 const colors = ['#d4af37', '#f9e076', '#ff6b6b', '#6bff6b', '#6b6bff', '#ffffff'];
                 
-                for (let i = 0; i < 100; i++) {
+                for (let i = 0; i < 50; i++) {
                     const confetti = document.createElement('div');
                     confetti.className = 'confetti';
                     confetti.style.left = Math.random() * 100 + 'vw';
@@ -464,74 +441,11 @@
                     confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
                     confetti.style.width = (Math.random() * 10 + 5) + 'px';
                     confetti.style.height = (Math.random() * 10 + 5) + 'px';
-                    document.body.appendChild(confetti);
+                    confettiContainer.appendChild(confetti);
                 }
             }
             
-            // Create firecrackers throughout the entire page
-            function createFirecrackers() {
-                const colors = ['#ff0000', '#ff9900', '#ffff00', '#00ff00', '#00ffff', '#ff00ff'];
-                
-                setInterval(() => {
-                    const xPos = Math.random() * 100;
-                    
-                    // Create firecracker
-                    const firecracker = document.createElement('div');
-                    firecracker.className = 'firecracker';
-                    firecracker.style.left = xPos + 'vw';
-                    firecracker.style.bottom = '0';
-                    document.body.appendChild(firecracker);
-                    
-                    // Animate firecracker rising
-                    let position = 0;
-                    const riseInterval = setInterval(() => {
-                        position += 2;
-                        firecracker.style.bottom = position + 'px';
-                        
-                        if (position > window.innerHeight * 0.7) {
-                            clearInterval(riseInterval);
-                            
-                            // Remove firecracker
-                            document.body.removeChild(firecracker);
-                            
-                            // Create burst effect
-                            for (let i = 0; i < 30; i++) {
-                                const burst = document.createElement('div');
-                                burst.className = 'firecracker-burst';
-                                burst.style.left = xPos + 'vw';
-                                burst.style.bottom = position + 'px';
-                                burst.style.background = colors[Math.floor(Math.random() * colors.length)];
-                                burst.style.boxShadow = '0 0 10px ' + colors[Math.floor(Math.random() * colors.length)];
-                                document.body.appendChild(burst);
-                                
-                                // Animate burst
-                                const angle = Math.random() * Math.PI * 2;
-                                const distance = Math.random() * 100 + 50;
-                                const duration = Math.random() * 1000 + 500;
-                                
-                                burst.animate([
-                                    { transform: 'translate(0, 0) scale(1)', opacity: 1 },
-                                    { transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) scale(0)`, opacity: 0 }
-                                ], {
-                                    duration: duration,
-                                    easing: 'ease-out'
-                                });
-                                
-                                // Remove burst after animation
-                                setTimeout(() => {
-                                    if (burst.parentNode) {
-                                        document.body.removeChild(burst);
-                                    }
-                                }, duration);
-                            }
-                        }
-                    }, 16);
-                }, 2000);
-            }
-            
-            // Start animations
             createConfetti();
-            createFirecrackers();
             
             // Gallery functionality
             const track = document.querySelector('.gallery-track');

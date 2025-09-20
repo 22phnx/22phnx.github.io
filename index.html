@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Papa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #0a0a2a 0%, #1a1a4a 50%, #2d2d5a 100%);
+            color: #f5f5f5; line-height: 1.6; overflow-x: hidden; min-height: 100vh;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header */
+        .header {
+            height: 100vh; display: flex; flex-direction: column; justify-content: center; 
+            align-items: center; text-align: center; position: relative; overflow: hidden;
+        }
+        .header::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.05" d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,224C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+        }
+        .header-content {
+            background: rgba(25, 25, 35, 0.4); backdrop-filter: blur(12px); padding: 50px;
+            border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(212, 175, 55, 0.2);
+            max-width: 800px; z-index: 2; position: relative; overflow: hidden; animation: fadeIn 2s ease-out;
+        }
+        .header-content::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent); animation: goldenGlow 3s infinite;
+        }
+        .header h1 {
+            font-family: 'Playfair Display', serif; font-size: 5rem; font-weight: 700; margin-bottom: 1rem;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); background: linear-gradient(45deg, #d4af37, #f9e076, #d4af37);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmer 3s infinite; position: relative;
+        }
+        .header h1::after {
+            content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
+            width: 100px; height: 3px; background: linear-gradient(90deg, transparent, #d4af37, transparent);
+        }
+        .header p { font-size: 1.5rem; margin-bottom: 2rem; font-weight: 300; }
+        .birthday-date {
+            font-size: 1.2rem; letter-spacing: 3px; margin-top: 1rem; color: #d4af37;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        
+        /* Golden Ornaments */
+        .gold-ornament {
+            position: absolute; background: linear-gradient(45deg, #d4af37, #f9e076, #d4af37);
+            border-radius: 50%; opacity: 0.6; filter: blur(2px); z-index: 1;
+        }
+        
+        /* Message Section */
+        .message-section { padding: 100px 0; background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(5px); position: relative; }
+        .message-container { max-width: 800px; margin: 0 auto; text-align: center; position: relative; }
+        .message-container h2 {
+            font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 2rem; color: #d4af37;
+            position: relative; display: inline-block;
+        }
+        .message-container h2::after {
+            content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
+            width: 80px; height: 3px; background: linear-gradient(90deg, transparent, #d4af37, transparent);
+        }
+        .message-content {
+            font-size: 1.2rem; line-height: 1.8; text-align: left; background: rgba(25, 25, 35, 0.4);
+            backdrop-filter: blur(8px); padding: 40px; border-radius: 15px; border-left: 4px solid #d4af37;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 20px rgba(212, 175, 55, 0.1); position: relative;
+        }
+        .message-content::before {
+            content: '"'; position: absolute; top: 20px; left: 15px; font-size: 5rem;
+            font-family: 'Playfair Display', serif; color: rgba(212, 175, 55, 0.2);
+        }
+        
+        /* Gallery Section */
+        .gallery-section { padding: 100px 0; position: relative; }
+        .gallery-title {
+            text-align: center; font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 3rem;
+            color: #d4af37; position: relative; display: inline-block; left: 50%; transform: translateX(-50%);
+        }
+        .gallery-title::after {
+            content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
+            width: 80px; height: 3px; background: linear-gradient(90deg, transparent, #d4af37, transparent);
+        }
+        .gallery-container {
+            position: relative; width: 100%; max-width: 800px; margin: 0 auto; overflow: hidden; border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); aspect-ratio: 16/9;
+        }
+        .gallery-track { display: flex; height: 100%; transition: transform 0.5s ease-in-out; }
+        .gallery-slide { min-width: 100%; height: 100%; position: relative; }
+        .gallery-slide img { width: 100%; height: 100%; object-fit: contain; border-radius: 20px; }
+        .slide-caption {
+            position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 20px; color: #fff; text-align: center; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;
+        }
+        .gallery-nav { display: flex; justify-content: center; margin-top: 20px; gap: 15px; }
+        .gallery-dot {
+            width: 12px; height: 12px; border-radius: 50%; background: rgba(212, 175, 55, 0.5); cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .gallery-dot.active { background: #d4af37; transform: scale(1.2); }
+        .gallery-btn {
+            position: absolute; top: 50%; transform: translateY(-50%); background: rgba(212, 175, 55, 0.3);
+            border: none; color: white; font-size: 1.5rem; padding: 15px; cursor: pointer; border-radius: 50%;
+            width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s ease; z-index: 10;
+        }
+        .gallery-btn:hover { background: rgba(212, 175, 55, 0.6); }
+        .gallery-btn.prev { left: 20px; }
+        .gallery-btn.next { right: 20px; }
+        
+        /* Wishes Section */
+        .wishes-section { padding: 100px 0; background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(5px); position: relative; }
+        .wishes-title {
+            text-align: center; font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 3rem;
+            color: #d4af37; position: relative; display: inline-block; left: 50%; transform: translateX(-50%);
+        }
+        .wishes-title::after {
+            content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
+            width: 80px; height: 3px; background: linear-gradient(90deg, transparent, #d4af37, transparent);
+        }
+        .wishes-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
+        .wish-card {
+            background: rgba(25, 25, 35, 0.4); backdrop-filter: blur(8px); padding: 30px; border-radius: 15px;
+            width: 300px; text-align: center; transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); position: relative; overflow: hidden;
+        }
+        .wish-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent); opacity: 0; transition: opacity 0.4s ease;
+        }
+        .wish-card:hover {
+            transform: translateY(-15px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 25px rgba(212, 175, 55, 0.2);
+            background: rgba(35, 35, 45, 0.5);
+        }
+        .wish-card:hover::before { opacity: 1; }
+        .wish-icon {
+            font-size: 2.5rem; color: #d4af37; margin-bottom: 20px; transition: transform 0.5s ease;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        .wish-card:hover .wish-icon { transform: scale(1.2) rotate(15deg); }
+        
+        /* Footer */
+        .footer {
+            text-align: center; padding: 60px 0; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(10px); position: relative;
+        }
+        .footer::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+        }
+        .heart { color: #d4af37; animation: pulse 1.5s infinite; text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+        
+        /* Floating Elements */
+        .floating-element {
+            position: absolute; border-radius: 50%; background: rgba(212, 175, 55, 0.1);
+            animation: float 8s infinite ease-in-out; z-index: 1;
+        }
+        
+        /* Confetti */
+        .confetti {
+            position: fixed; width: 10px; height: 10px; background: #d4af37; opacity: 0.7;
+            animation: confettiFall 5s linear infinite; z-index: 1000; pointer-events: none;
+        }
+        
+        /* Firecracker */
+        .firecracker {
+            position: fixed; width: 8px; height: 20px; background: linear-gradient(to bottom, #ff0000, #8b0000);
+            border-radius: 2px; z-index: 1000; pointer-events: none;
+        }
+        .firecracker-burst {
+            position: fixed; width: 6px; height: 6px; border-radius: 50%; z-index: 1000; pointer-events: none;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+        @keyframes shimmer {
+            0% { background-position: -100% 0; }
+            100% { background-position: 200% 0; }
+        }
+        @keyframes goldenGlow {
+            0% { box-shadow: 0 0 5px rgba(212, 175, 55, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.6); }
+           100% { box-shadow: 0 0 5px rgba(212, 175, 55, 0.3); }
+        }
+        @keyframes confettiFall {
+            0% { 
+                transform: translateY(-100px) rotate(0deg); 
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(100vh) rotate(360deg); 
+                opacity: 0;
+            }
+        }
+        @keyframes firecrackerRise {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+        @keyframes firecrackerBurst {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(10); opacity: 0; }
+        }
+        
+        /* Cake Animation */
+        .cake-container { margin: 60px 0; position: relative; height: 200px; display: flex; justify-content: center; align-items: center; }
+        .cake {
+            width: 200px; height: 140px; background: linear-gradient(to right, #8b7500, #d4af37, #8b7500);
+            border-radius: 10px 10px 0 0; position: relative; animation: cakeBounce 4s infinite ease-in-out;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+        .cake-top {
+            width: 200px; height: 50px; background: linear-gradient(to right, #d4af37, #f9e076, #d4af37);
+            border-radius: 10px 10px 0 0; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .candle {
+            width: 12px; height: 50px; background: linear-gradient(to bottom, #ffffff, #f5f5f5); position: absolute;
+            top: -50px; left: 50%; transform: translateX(-50%); border-radius: 6px; box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        .flame {
+            width: 20px; height: 40px; background: linear-gradient(to bottom, #ffcc00, #ff9900); border-radius: 50% 50% 20% 20%;
+            position: absolute; top: -40px; left: 50%; transform: translateX(-50%); animation: flicker 1.5s infinite alternate;
+            box-shadow: 0 0 20px #ffcc00, 0 0 40px #ffcc00, 0 0 60px #ffcc00; filter: blur(2px);
+        }
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1); opacity: 0.9; }
+            25% { transform: translateX(-50%) scale(1.1) skewX(5deg); opacity: 1; }
+            50% { transform: translateX(-50%) scale(0.9) skewX(-5deg); opacity: 0.95; }
+            75% { transform: translateX(-50%) scale(1.2) skewX(3deg); opacity: 1; }
+            100% { transform: translateX(-50%) scale(1); opacity: 0.9; }
+        }
+        @keyframes cakeBounce {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0); }
+        }
+        
+        /* Navigation */
+        .nav-dots { position: fixed; right: 30px; top: 50%; transform: translateY(-50%); z-index: 10; }
+        .dot {
+            width: 12px; height: 12px; margin: 15px 0; border: 2px solid rgba(212, 175, 55, 0.5);
+            border-radius: 50%; cursor: pointer; transition: all 0.3s ease;
+        }
+        .dot.active { background: #d4af37; box-shadow: 0 0 10px #d4af37; }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 3rem; }
+            .header p { font-size: 1.2rem; }
+            .message-content { font-size: 1rem; padding: 20px; }
+            .gallery-container { height: auto; min-height: 300px; }
+            .wishes-container { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Golden Ornaments -->
+    <div class="gold-ornament" style="width: 120px; height: 120px; top: 10%; left: 5%;"></div>
+    <div class="gold-ornament" style="width: 80px; height: 80px; top: 70%; left: 10%;"></div>
+    <div class="gold-ornament" style="width: 100px; height: 100px; top: 20%; right: 8%;"></div>
+    <div class="gold-ornament" style="width: 60px; height: 60px; top: 65%; right: 5%;"></div>
+
+    <!-- Navigation Dots -->
+    <div class="nav-dots">
+        <div class="dot active" data-section="header"></div>
+        <div class="dot" data-section="message"></div>
+        <div class="dot" data-section="gallery"></div>
+        <div class="dot" data-section="wishes"></div>
+    </div>
+
+    <!-- Header Section -->
+    <section class="header" id="header">
+        <!-- Confetti Container -->
+        <div id="confetti-container" class="confetti-container"></div>
+        
+        <!-- Floating Elements -->
+        <div class="floating-element" style="width: 80px; height: 80px; top: 20%; left: 10%; animation-delay: 0s;"></div>
+        <div class="floating-element" style="width: 50px; height: 50px; top: 70%; left: 5%; animation-delay: 1s;"></div>
+        <div class="floating-element" style="width: 100px; height: 100px; top: 60%; right: 10%; animation-delay: 2s;"></div>
+        <div class="floating-element" style="width: 60px; height: 60px; top: 20%; right: 15%; animation-delay: 3s;"></div>
+        
+        <div class="header-content">
+            <h1>Happy Birthday, Papa</h1>
+            <p>Wishing you a wonderful day filled with joy and happiness</p>
+            <p class="birthday-date">CELEBRATING YOUR SPECIAL DAY</p>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down" style="font-size: 2rem; position: absolute; bottom: 30px; color: #d4af37; animation: bounce 2s infinite;"></i>
+        </div>
+    </section>
+
+    <!-- Message Section -->
+    <section class="message-section" id="message">
+        <div class="message-container">
+            <h2>A Message For You</h2>
+            <div class="message-content">
+                <p>Dear Papa,</p>
+                <p>On this special day, I want to take a moment to express how grateful I am to have you in my life. Your wisdom, kindness, and strength have been a guiding light for me throughout the years.</p>
+                <p>You've taught me so much about life, love, and what it means to be a good person. Your unwavering support and encouragement have helped me become who I am today.</p>
+                <p>Today, we celebrate you and all the joy you bring to those around you. May your birthday be filled with laughter, love, and all the things that make you happiest.</p>
+                <p>With all my love,</p>
+                <p>Your Child</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cake Animation -->
+    <div class="cake-container">
+        <div class="cake">
+            <div class="cake-top"></div>
+            <div class="candle"></div>
+            <div class="flame"></div>
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <h2 class="gallery-title">Memories Together</h2>
+        
+        <div class="gallery-container">
+            <div class="gallery-track">
+                <div class="gallery-slide">
+                    <img src="https://i.ibb.co/21MWVhfD/photo-2024-07-15-11-36-01.jpg" alt="Special Memory with Papa">
+                    <div class="slide-caption">A Special Moment with Papa</div>
+                </div>
+                <div class="gallery-slide">
+                    <img src="https://i.ibb.co/217Yw1fp/photo-2024-07-15-11-36-02.jpg" alt="Memory with Papa">
+                    <div class="slide-caption">Family Celebration</div>
+                </div>
+                <div class="gallery-slide">
+                    <img src="https://i.ibb.co/gbzvdLJj/photo-2024-07-15-11-36-03.jpg" alt="Memory with Papa">
+                    <div class="slide-caption">Best Dad Ever</div>
+                </div>
+                <div class="gallery-slide">
+                    <img src="https://i.ibb.co/jPLKPS0y/photo-2024-07-15-11-36-04.jpg" alt="Memory with Papa">
+                    <div class="slide-caption">Special Moments</div>
+                </div>
+                <div class="gallery-slide">
+                    <img src="https://i.ibb.co/BHMNrGtd/photo-2024-07-15-11-36-05.jpg" alt="Memory with Papa">
+                    <div class="slide-caption">Happy Times</div>
+                </div>
+                <div class="gallery-slide">
+                    <img src="https://i.ibb.co/LhBfn9gj/photo-2024-07-15-11-36-06.jpg" alt="Memory with Papa">
+                    <div class="slide-caption">Precious Moments</div>
+                </div>
+                <div class="gallery-slide">
+                    <img src="https://i.ibb.co/1fRmqPKq/photo-2024-07-15-11-36-07.jpg" alt="Memory with Papa">
+                    <div class="slide-caption">Father's Love</div>
+                </div>
+                <div class="gallery-slide">
+                    <img src="https://i.ibb.co/h1gdcMb1/photo-2024-07-15-11-36-08.jpg" alt="Memory with Papa">
+                    <div class="slide-caption">Cherished Memories</div>
+                </div>
+                <div class="gallery-slide">
+                    <img src="https://i.ibb.co/8D33NCGb/photo-2024-07-15-11-36-09.jpg" alt="Memory with Papa">
+                    <div class="slide-caption">Happy Birthday Papa</div>
+                </div>
+            </div>
+            
+            <button class="gallery-btn prev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="gallery-btn next">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        
+        <div class="gallery-nav">
+            <div class="gallery-dot active"></div>
+            <div class="gallery-dot"></div>
+            <div class="gallery-dot"></div>
+            <div class="gallery-dot"></div>
+            <div class="gallery-dot"></div>
+            <div class="gallery-dot"></div>
+            <div class="gallery-dot"></div>
+            <div class="gallery-dot"></div>
+            <div class="gallery-dot"></div>
+        </div>
+    </section>
+
+    <!-- Wishes Section -->
+    <section class="wishes-section" id="wishes">
+        <h2 class="wishes-title">Birthday Wishes</h2>
+        <div class="wishes-container">
+            <div class="wish-card">
+                <div class="wish-icon">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <h3>Joy</h3>
+                <p>May your life be filled with joy and laughter.</p>
+            </div>
+            <div class="wish-card">
+                <div class="wish-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>Love</h3>
+                <p>Wishing you love and happiness today and always.</p>
+            </div>
+            <div class="wish-card">
+                <div class="wish-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <h3>Health</h3>
+                <p>May you enjoy good health and prosperity in the coming year.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Made with <span class="heart">❤</span> for my Papa</p>
+            <p>Happy Birthday! © 2023</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Typewriter effect
+            const headerText = "Happy Birthday, Papa";
+            const headerElement = document.querySelector('.header h1');
+            let i = 0;
+            
+            headerElement.textContent = '';
+            
+            function typeWriter() {
+                if (i < headerText.length) {
+                    headerElement.textContent += headerText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 150);
+                }
+            }
+            
+            setTimeout(typeWriter, 500);
+            
+            // Create confetti throughout the entire page
+            function createConfetti() {
+                const colors = ['#d4af37', '#f9e076', '#ff6b6b', '#6bff6b', '#6b6bff', '#ffffff'];
+                
+                for (let i = 0; i < 100; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.animationDelay = Math.random() * 5 + 's';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.width = (Math.random() * 10 + 5) + 'px';
+                    confetti.style.height = (Math.random() * 10 + 5) + 'px';
+                    document.body.appendChild(confetti);
+                }
+            }
+            
+            // Create firecrackers throughout the entire page
+            function createFirecrackers() {
+                const colors = ['#ff0000', '#ff9900', '#ffff00', '#00ff00', '#00ffff', '#ff00ff'];
+                
+                setInterval(() => {
+                    const xPos = Math.random() * 100;
+                    
+                    // Create firecracker
+                    const firecracker = document.createElement('div');
+                    firecracker.className = 'firecracker';
+                    firecracker.style.left = xPos + 'vw';
+                    firecracker.style.bottom = '0';
+                    document.body.appendChild(firecracker);
+                    
+                    // Animate firecracker rising
+                    let position = 0;
+                    const riseInterval = setInterval(() => {
+                        position += 2;
+                        firecracker.style.bottom = position + 'px';
+                        
+                        if (position > window.innerHeight * 0.7) {
+                            clearInterval(riseInterval);
+                            
+                            // Remove firecracker
+                            document.body.removeChild(firecracker);
+                            
+                            // Create burst effect
+                            for (let i = 0; i < 30; i++) {
+                                const burst = document.createElement('div');
+                                burst.className = 'firecracker-burst';
+                                burst.style.left = xPos + 'vw';
+                                burst.style.bottom = position + 'px';
+                                burst.style.background = colors[Math.floor(Math.random() * colors.length)];
+                                burst.style.boxShadow = '0 0 10px ' + colors[Math.floor(Math.random() * colors.length)];
+                                document.body.appendChild(burst);
+                                
+                                // Animate burst
+                                const angle = Math.random() * Math.PI * 2;
+                                const distance = Math.random() * 100 + 50;
+                                const duration = Math.random() * 1000 + 500;
+                                
+                                burst.animate([
+                                    { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+                                    { transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) scale(0)`, opacity: 0 }
+                                ], {
+                                    duration: duration,
+                                    easing: 'ease-out'
+                                });
+                                
+                                // Remove burst after animation
+                                setTimeout(() => {
+                                    if (burst.parentNode) {
+                                        document.body.removeChild(burst);
+                                    }
+                                }, duration);
+                            }
+                        }
+                    }, 16);
+                }, 2000);
+            }
+            
+            // Start animations
+            createConfetti();
+            createFirecrackers();
+            
+            // Gallery functionality
+            const track = document.querySelector('.gallery-track');
+            const slides = document.querySelectorAll('.gallery-slide');
+            const dots = document.querySelectorAll('.gallery-dot');
+            const prevBtn = document.querySelector('.gallery-btn.prev');
+            const nextBtn = document.querySelector('.gallery-btn.next');
+            let currentIndex = 0;
+            
+            function updateGallery() {
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+            }
+            
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateGallery();
+            });
+            
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                updateGallery();
+            });
+            
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateGallery();
+                });
+            });
+            
+            // Swipe functionality for mobile
+            let startX = 0;
+            let endX = 0;
+            
+            track.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+            });
+            
+            track.addEventListener('touchend', (e) => {
+                endX = e.changedTouches[0].clientX;
+                handleSwipe();
+            });
+            
+            function handleSwipe() {
+                const threshold = 50;
+                
+                if (startX - endX > threshold) {
+                    // Swipe left - next
+                    currentIndex = (currentIndex + 1) % slides.length;
+                    updateGallery();
+                } else if (endX - startX > threshold) {
+                    // Swipe right - previous
+                    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                    updateGallery();
+                }
+            }
+            
+            // Add fireworks on click
+            document.body.addEventListener('click', function(e) {
+                createFirework(e.clientX, e.clientY);
+            });
+            
+            function createFirework(x, y) {
+                const colors = ['#d4af37', '#f9e076', '#8b7500', '#ffcc00', '#ff6b6b', '#6bff6b'];
+                const particles = 30;
+                
+                for (let i = 0; i < particles; i++) {
+                    const particle = document.createElement('div');
+                    particle.style.position = 'fixed';
+                    particle.style.left = x + 'px';
+                    particle.style.top = y + 'px';
+                    particle.style.width = '5px';
+                    particle.style.height = '5px';
+                    particle.style.borderRadius = '50%';
+                    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    particle.style.boxShadow = '0 0 10px 5px ' + colors[Math.floor(Math.random() * colors.length)];
+                    particle.style.zIndex = '1000';
+                    document.body.appendChild(particle);
+                    
+                    const angle = Math.random() * Math.PI * 2;
+                    const speed = Math.random() * 5 + 2;
+                    const dx = Math.cos(angle) * speed;
+                    const dy = Math.sin(angle) * speed;
+                    
+                    let posX = x;
+                    let posY = y;
+                    let opacity = 1;
+                    
+                    const animateParticle = () => {
+                        posX += dx;
+                        posY += dy;
+                        opacity -= 0.02;
+                        
+                        particle.style.left = posX + 'px';
+                        particle.style.top = posY + 'px';
+                        particle.style.opacity = opacity;
+                        
+                        if (opacity > 0) {
+                            requestAnimationFrame(animateParticle);
+                        } else {
+                            document.body.removeChild(particle);
+                        }
+                    };
+                    
+                    animateParticle();
+                }
+            }
+            
+            // Navigation dots functionality
+            const navDots = document.querySelectorAll('.dot');
+            const sections = document.querySelectorAll('section');
+            
+            navDots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const sectionId = this.getAttribute('data-section');
+                    const section = document.getElementById(sectionId);
+                    
+                    window.scrollTo({
+                        top: section.offsetTop,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Update active dot on scroll
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navDots.forEach(dot => {
+                    dot.classList.remove('active');
+                    if (dot.getAttribute('data-section') === current) {
+                        dot.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
